@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+.cv-root {
+  --cv-sand: #fbf5ea;
+  --cv-sand-deep: #f3e6cf;
+  --cv-ink: #2b1d14;
+  --cv-ink-soft: #5c4636;
+  --cv-terra: #c0532d;
+  --cv-terra-dark: #9c3f1f;
+  --cv-ochre: #d39b2a;
+  --cv-blue: #2c5f9e;
+  --cv-blue-deep: #1b3a63;
+  --cv-green: #3e8a4a;
+
+  font-family: var(--font-body), system-ui, sans-serif;
+  background: var(--cv-sand);
+  color: var(--cv-ink);
+  scroll-behavior: smooth;
+}
+
+.cv-root .font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* Arabic: its own typefaces, no synthetic italics, and no letter-spacing (it breaks letter joining) */
+.cv-root .cv-lang-ar {
+  font-family: var(--font-ar-body), system-ui, sans-serif;
+}
+
+.cv-root .cv-lang-ar .font-display {
+  font-family: var(--font-ar-display), var(--font-ar-body), serif;
+}
+
+.cv-root .cv-lang-ar .italic {
+  font-style: normal;
+}
+
+.cv-root .cv-lang-ar [class*='tracking-'] {
+  letter-spacing: 0;
+}
+
+/* Zellige-inspired eight-pointed star tile (two overlapping squares) */
+.cv-root .cv-zellige {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23c0532d' stroke-width='1'%3E%3Crect x='17' y='17' width='22' height='22'/%3E%3Crect x='17' y='17' width='22' height='22' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='5'/%3E%3Cpath d='M0 0l8 8M56 0l-8 8M0 56l8-8M56 56l-8-8'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 56px 56px;
+}
+
+.cv-root .cv-zellige-light {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23fbf5ea' stroke-width='1'%3E%3Crect x='17' y='17' width='22' height='22'/%3E%3Crect x='17' y='17' width='22' height='22' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='5'/%3E%3Cpath d='M0 0l8 8M56 0l-8 8M0 56l8-8M56 56l-8-8'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 56px 56px;
+}
+
+/* Small repeating Moroccan border: diamonds in terracotta, blue and ochre */
+.cv-root .cv-border {
+  height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='14' viewBox='0 0 42 14'%3E%3Cpath d='M7 0l7 7-7 7-7-7z' fill='%23c0532d'/%3E%3Cpath d='M21 2l5 5-5 5-5-5z' fill='%23d39b2a'/%3E%3Cpath d='M35 0l7 7-7 7-7-7z' fill='%232c5f9e'/%3E%3C/svg%3E");
+  background-size: 42px 14px;
+  background-repeat: repeat-x;
+}
+
+.cv-root ::selection {
+  background: var(--cv-ochre);
+  color: var(--cv-ink);
+}
+
+.cv-root :focus-visible {
+  outline: 3px solid var(--cv-blue);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-root {
+    scroll-behavior: auto;
+  }
+}
+
+/* Arabic script needs a little more size than Latin at the smallest text step */
+.cv-root .cv-lang-ar .text-xs {
+  font-size: 0.875rem;
+}
