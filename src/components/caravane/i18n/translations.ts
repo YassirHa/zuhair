@@ -35,7 +35,6 @@ const fr = {
       "Sur les routes de l'Atlas, chaque cartable ouvre un chemin vers l'avenir : nous portons l'école jusqu'aux enfants des villages les plus isolés.",
     ctaSupport: 'Soutenir le projet',
     ctaDiscover: 'Découvrir la caravane',
-    sceneLabel: 'La caravane traverse les montagnes enneigées du Haut Atlas vers un village amazigh.',
   },
   presentation: {
     eyebrow: 'Présentation du projet',
@@ -178,6 +177,15 @@ const fr = {
     sceneLabel:
       "Arrivée de la caravane devant une école de village : des élèves avec leurs nouveaux cartables et une bénévole qui lit un livre près de l'étagère du coin de lecture.",
   },
+  photos: {
+    heroAlt: "Le bus de la Caravane de l'Espoir et trois bénévoles dans la neige, au pied des montagnes de l'Atlas.",
+    schoolAlt: 'Une école rurale de montagne aux murs peints.',
+    schoolCaption: 'Une école rurale de montagne.',
+    communityAlt: "Élèves, familles et bénévoles réunis devant une école lors d'une activité.",
+    communityCaption: "École, familles et communauté réunies lors d'une activité à l'école.",
+    pupilsAlt: 'Un groupe d’élèves devant leur école de village.',
+    pupilsCaption: 'Des élèves devant leur école de village.',
+  },
   footer: {
     name: "Caravane de l'Espoir pour la Scolarisation",
     tagline: 'Une caravane solidaire au service des écoles du Moyen Atlas et du Haut Atlas.',
@@ -221,7 +229,6 @@ const ar: Dictionary = {
       'على طرقات الأطلس، كل محفظة تفتح طريقًا نحو المستقبل: نحمل المدرسة إلى أطفال القرى الأكثر عزلة.',
     ctaSupport: 'ادعم المشروع',
     ctaDiscover: 'اكتشف القافلة',
-    sceneLabel: 'القافلة تعبر جبال الأطلس الكبير المكسوة بالثلوج نحو قرية أمازيغية.',
   },
   presentation: {
     eyebrow: 'تقديم المشروع',
@@ -362,6 +369,15 @@ const ar: Dictionary = {
     school: 'مدرسة',
     sceneLabel:
       'وصول القافلة أمام مدرسة قروية: تلاميذ بمحافظهم الجديدة ومتطوعة تقرأ كتابًا قرب رفّ ركن القراءة.',
+  },
+  photos: {
+    heroAlt: 'حافلة قافلة الأمل وثلاثة متطوعين وسط الثلوج عند سفح جبال الأطلس.',
+    schoolAlt: 'مدرسة قروية جبلية بجدران ملونة.',
+    schoolCaption: 'مدرسة قروية في الجبال.',
+    communityAlt: 'تلاميذ وأسر ومتطوعون مجتمعون أمام مدرسة خلال نشاط.',
+    communityCaption: 'المدرسة والأسر والمجتمع مجتمعون خلال نشاط بالمدرسة.',
+    pupilsAlt: 'مجموعة من التلاميذ أمام مدرستهم في القرية.',
+    pupilsCaption: 'تلاميذ أمام مدرستهم في القرية.',
   },
   footer: {
     name: 'قافلة الأمل للتمدرس',

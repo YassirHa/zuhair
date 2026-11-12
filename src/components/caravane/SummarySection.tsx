@@ -3,6 +3,7 @@
 import { Reveal, Ridge, SectionHeading } from './Reveal'
 import { Person, VanShape } from './illustrations'
 import { useLanguage } from './i18n/LanguageContext'
+import Photo from './Photo'
 
 /** Arrival scene: the caravan parked at a village school with its new reading corner. */
 function ArrivalScene({ label, school, vanLabel }: { label: string; school: string; vanLabel: string }) {
@@ -96,12 +97,23 @@ export default function SummarySection() {
             </div>
           </Reveal>
 
-          <Reveal className="mt-10">
-            <blockquote className="relative mx-auto max-w-4xl rounded-3xl bg-[#1b3a63] p-8 text-center text-[#fbf5ea] md:p-12">
-              <div className="cv-zellige-light pointer-events-none absolute inset-0 rounded-3xl opacity-[0.07]" aria-hidden="true" />
-              <p className="relative font-display text-xl leading-relaxed md:text-2xl">{s.text}</p>
-            </blockquote>
-          </Reveal>
+          <div className="mt-10 grid items-center gap-8 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+            <Reveal className="mx-auto w-full max-w-[480px]">
+              <Photo
+                src="/images/eleves-ecole.jpg"
+                alt={t.photos.pupilsAlt}
+                caption={t.photos.pupilsCaption}
+                width={468}
+                height={313}
+              />
+            </Reveal>
+            <Reveal delay={0.1}>
+              <blockquote className="relative h-full rounded-3xl bg-[#1b3a63] p-8 text-[#fbf5ea] md:p-10">
+                <div className="cv-zellige-light pointer-events-none absolute inset-0 rounded-3xl opacity-[0.07]" aria-hidden="true" />
+                <p className="relative font-display text-xl leading-relaxed md:text-2xl">{s.text}</p>
+              </blockquote>
+            </Reveal>
+          </div>
 
           <Reveal className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a

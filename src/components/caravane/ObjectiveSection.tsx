@@ -3,6 +3,7 @@
 import { GraduationCap, HeartHandshake, TrendingDown } from 'lucide-react'
 import { Reveal, Ridge, SectionHeading } from './Reveal'
 import { useLanguage } from './i18n/LanguageContext'
+import Photo from './Photo'
 
 // Same order as the translated pillars (objective.pillars).
 const PILLARS = [
@@ -21,9 +22,21 @@ export default function ObjectiveSection() {
         <div className="relative mx-auto max-w-6xl">
           <SectionHeading stop="03" eyebrow={t.objective.eyebrow} title={t.objective.title} light />
 
-          <Reveal>
-            <p className="mt-8 max-w-4xl text-lg leading-relaxed text-[#fbf5ea]/85 md:text-xl">{t.objective.text}</p>
-          </Reveal>
+          <div className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+            <Reveal>
+              <p className="text-lg leading-relaxed text-[#fbf5ea]/85 md:text-xl">{t.objective.text}</p>
+            </Reveal>
+            <Reveal delay={0.1} className="max-w-[480px]">
+              <Photo
+                src="/images/fete-ecole.jpg"
+                alt={t.photos.communityAlt}
+                caption={t.photos.communityCaption}
+                width={588}
+                height={441}
+                light
+              />
+            </Reveal>
+          </div>
 
           <ul className="mt-12 grid gap-5 md:grid-cols-3">
             {PILLARS.map((p, i) => (

@@ -137,118 +137,44 @@ export function Person({ x, y, scale = 1, hijab, garment, skin = '#c68b5f', bag,
   )
 }
 
-function Cedar({ x, y, s = 1 }: { x: number; y: number; s?: number }) {
-  return (
-    <g transform={`translate(${x} ${y}) scale(${s})`}>
-      <rect x="-2" y="-8" width="4" height="10" fill="#5a3a24" />
-      <path d="M-18-6h36l-18-14z" fill="#36603a" />
-      <path d="M-14-16h28l-14-12z" fill="#3e6e42" />
-      <path d="M-9-25h18l-9-10z" fill="#4a7d4c" />
-    </g>
-  )
-}
+const ROAD = 'M-200 70 C 160 52, 420 88, 740 64 S 1180 50, 1660 66'
 
-function Kasbah({ x, y }: { x: number; y: number }) {
-  // A small Amazigh mountain village of earthen houses around a minaret.
-  const houses: [number, number, number, number, string][] = [
-    [0, -34, 44, 34, '#b8653c'],
-    [40, -48, 38, 48, '#a9572f'],
-    [74, -30, 46, 30, '#c27447'],
-    [114, -42, 34, 42, '#b26038'],
-    [-36, -24, 40, 24, '#c27447'],
-    [144, -26, 42, 26, '#a9572f'],
-  ]
-  return (
-    <g transform={`translate(${x} ${y})`}>
-      {houses.map(([hx, hy, w, h, c], i) => (
-        <g key={i}>
-          <rect x={hx} y={hy} width={w} height={h} fill={c} />
-          <rect x={hx} y={hy} width={w} height="4" fill="#8f4a28" opacity="0.5" />
-          <rect x={hx + w * 0.3} y={hy + h * 0.35} width="5" height="7" fill="#4a2a18" />
-          <rect x={hx + w * 0.65} y={hy + h * 0.35} width="5" height="7" fill="#4a2a18" />
-        </g>
-      ))}
-      {/* Minaret */}
-      <rect x="96" y="-92" width="20" height="62" fill="#c98454" />
-      <path d="M96-92h4v-5h4v5h4v-5h4v5h4v-5h-20z" fill="#c98454" />
-      <rect x="102" y="-80" width="8" height="12" rx="4" fill="#4a2a18" />
-      <path d="M104-97v-8" stroke="#d39b2a" strokeWidth="2" />
-      {/* A Chefchaouen-blue school door */}
-      <rect x="52" y="-18" width="12" height="18" rx="6" fill="#2c5f9e" />
-    </g>
-  )
-}
-
-const ROAD = 'M-200 838 C 160 790, 420 870, 740 808 S 1180 760, 1660 800'
-
-/** Full Atlas landscape with the caravan driving along the foreground road. */
-export function AtlasScene({ animate = true, label, vanLabel }: { animate?: boolean; label: string; vanLabel?: string }) {
+/**
+ * The bottom edge of the hero: a sand-coloured ridge with a road on which the caravan drives.
+ * It sits over the hero photo and flows into the next section.
+ */
+export function RoadStrip({ animate = true, vanLabel }: { animate?: boolean; vanLabel?: string }) {
   return (
     <svg
-      viewBox="0 0 1440 900"
+      viewBox="0 0 1440 130"
       preserveAspectRatio="xMidYMax slice"
-      className="absolute inset-0 h-full w-full"
-      role="img"
-      aria-label={label}
+      className="block h-[110px] w-full md:h-[130px]"
+      aria-hidden="true"
     >
-      <defs>
-        <linearGradient id="cv-sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fbefd9" />
-          <stop offset="0.55" stopColor="#f8dcb0" />
-          <stop offset="1" stopColor="#f2bf86" />
-        </linearGradient>
-      </defs>
-      <rect width="1440" height="900" fill="url(#cv-sky)" />
-      <circle cx="1090" cy="430" r="78" fill="#f5b55a" opacity="0.65" />
-
-      {/* High Atlas: far, snow-capped */}
-      <path
-        d="M0 560 L120 470 L220 520 L360 400 L470 480 L600 380 L720 470 L860 360 L980 460 L1100 390 L1220 470 L1340 410 L1440 450 V900 H0Z"
-        fill="#a9b4ca"
-      />
-      <g fill="#f7f4ee">
-        <path d="M360 400 335 421 345 416 355 424 365 416 385 418z" />
-        <path d="M600 380 575 399 586 394 597 402 608 394 625 399z" />
-        <path d="M860 360 835 380 846 374 857 383 868 374 885 381z" />
-        <path d="M1100 390 1075 405 1086 401 1097 408 1108 401 1125 407z" />
-      </g>
-
-      {/* Middle Atlas: cedar-covered ridges */}
-      <path d="M0 640 Q160 560 300 600 T600 580 T900 610 T1200 570 T1440 600 V900 H0Z" fill="#d9a174" />
-      <Cedar x={120} y={622} s={1.1} />
-      <Cedar x={160} y={612} />
-      <Cedar x={330} y={604} s={0.9} />
-      <Cedar x={480} y={596} s={1.2} />
-      <Cedar x={1260} y={598} s={1} />
-      <Cedar x={1310} y={606} s={1.2} />
-
-      {/* Village hill */}
-      <path d="M560 720 Q790 590 1050 616 Q1260 636 1440 610 V900 H560Z" fill="#c77d52" />
-      <Kasbah x={830} y={640} />
-      <path d="M760 760 Q840 700 900 660" stroke="#ebd5ae" strokeWidth="6" fill="none" strokeLinecap="round" />
-
-      {/* Foreground terraces */}
-      <path d="M0 770 Q300 700 620 748 T1440 728 V900 H0Z" fill="#8f5634" />
-      <path d="M40 760 Q200 728 360 742 Q200 752 40 772z" fill="#6e8b4e" />
-      <path d="M1040 742 Q1200 716 1400 730 Q1220 744 1040 754z" fill="#6e8b4e" />
-      <Cedar x={70} y={786} s={1.4} />
-      <Cedar x={1370} y={770} s={1.5} />
-
-      {/* The road and the caravan */}
-      <path d={ROAD} stroke="#ebd5ae" strokeWidth="34" fill="none" />
+      <path d="M0 40 L180 18 L360 34 L560 10 L760 30 L960 8 L1160 28 L1320 14 L1440 26 V130 H0Z" fill="#fbf5ea" opacity="0.35" />
+      <path d="M0 58 Q360 34 720 50 T1440 44 V130 H0Z" fill="#fbf5ea" />
+      <path d={ROAD} stroke="#ebd5ae" strokeWidth="30" fill="none" />
       <path d={ROAD} stroke="#fbf5ea" strokeWidth="2.5" strokeDasharray="16 18" fill="none" />
       {[0, 1].map((i) => (
         <g key={i}>
-          <g transform="scale(0.85) translate(-70 -72)">
+          <g transform="scale(0.62) translate(-70 -72)">
             <VanShape body={i === 0 ? '#2c5f9e' : '#c0532d'} label={vanLabel} />
           </g>
           {animate ? (
-            <animateMotion dur="26s" repeatCount="indefinite" begin={`${-i * 3.2}s`} path={ROAD} rotate="auto" />
-          ) : null}
-          {!animate && <animateMotion dur="0.01s" fill="freeze" keyPoints={`${0.42 - i * 0.12};${0.42 - i * 0.12}`} keyTimes="0;1" calcMode="linear" path={ROAD} rotate="auto" />}
+            <animateMotion dur="24s" repeatCount="indefinite" begin={`${-i * 2.6}s`} path={ROAD} rotate="auto" />
+          ) : (
+            <animateMotion
+              dur="0.01s"
+              fill="freeze"
+              keyPoints={`${0.42 - i * 0.1};${0.42 - i * 0.1}`}
+              keyTimes="0;1"
+              calcMode="linear"
+              path={ROAD}
+              rotate="auto"
+            />
+          )}
         </g>
       ))}
-      <path d="M0 860 Q720 830 1440 870 V900 H0Z" fill="#7a4529" />
     </svg>
   )
 }

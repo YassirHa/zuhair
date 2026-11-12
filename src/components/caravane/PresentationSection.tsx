@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { Reveal, SectionHeading } from './Reveal'
 import { IconCartable, IconEtageres, IconJeux, IconLivres, VanGlyph } from './illustrations'
 import { useLanguage } from './i18n/LanguageContext'
+import Photo from './Photo'
 
 // Text for each étape lives in the translations (presentation.stages), in the same order.
 const ETAPES = [
@@ -50,6 +51,15 @@ export default function PresentationSection() {
               <div className="cv-zellige-light absolute inset-0 opacity-[0.08]" aria-hidden="true" />
               <p className="relative">{p.p3}</p>
               <p className="relative mt-6 font-display text-xl italic text-[#f6d27a]">{p.tagline}</p>
+            </div>
+            <div className="mt-8 md:max-w-[480px]">
+              <Photo
+                src="/images/ecole-montagne.jpg"
+                alt={t.photos.schoolAlt}
+                caption={t.photos.schoolCaption}
+                width={470}
+                height={313}
+              />
             </div>
           </Reveal>
         </div>

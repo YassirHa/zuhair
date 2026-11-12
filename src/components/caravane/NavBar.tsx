@@ -8,10 +8,10 @@ import { VanGlyph } from './illustrations'
 import { useLanguage } from './i18n/LanguageContext'
 import { LOCALES } from './i18n/translations'
 
-function LanguageToggle() {
+function LanguageToggle({ onDark = false }: { onDark?: boolean }) {
   const { locale, setLocale, t } = useLanguage()
   return (
-    <div role="group" aria-label={t.nav.language} className="flex rounded-full bg-[#2b1d14]/8 p-1" dir="ltr">
+    <div role="group" aria-label={t.nav.language} className={`flex rounded-full p-1 ${onDark ? 'bg-[#fbf5ea]/15' : 'bg-[#2b1d14]/8'}`} dir="ltr">
       {LOCALES.map((l) => (
         <button
           key={l.code}
@@ -21,7 +21,11 @@ function LanguageToggle() {
           aria-pressed={locale === l.code}
           title={l.name}
           className={`min-w-9 rounded-full px-2.5 py-1 text-sm font-bold transition-colors ${
-            locale === l.code ? 'bg-[#1b3a63] text-[#fbf5ea]' : 'text-[#5c4636] hover:text-[#2b1d14]'
+            locale === l.code
+              ? 'bg-[#1b3a63] text-[#fbf5ea]'
+              : onDark
+                ? 'text-[#fbf5ea]/80 hover:text-[#fbf5ea]'
+                : 'text-[#5c4636] hover:text-[#2b1d14]'
           }`}
         >
           {l.label}
@@ -61,6 +65,8 @@ export default function NavBar() {
   }, [])
 
   const links = SECTIONS.slice(1)
+  // Over the hero photo the bar is transparent, so it needs light text.
+  const onDark = !scrolled && !open
 
   return (
     <header
@@ -71,7 +77,11 @@ export default function NavBar() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6 md:h-20">
         <a href="#depart" className="flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
           <VanGlyph className="h-7 w-auto shrink-0" />
-          <span className="font-display truncate text-base font-bold leading-none text-[#2b1d14] sm:text-lg">
+          <span
+            className={`font-display truncate text-base font-bold leading-none sm:text-lg ${
+              onDark ? 'text-[#fbf5ea]' : 'text-[#2b1d14]'
+            }`}
+          >
             {t.nav.brand}
           </span>
         </a>
@@ -83,14 +93,18 @@ export default function NavBar() {
               href={`#${id}`}
               aria-current={active === id ? 'true' : undefined}
               className={`rounded-full px-3 py-2 text-sm font-semibold transition-colors ${
-                active === id ? 'bg-[#c0532d]/10 text-[#9c3f1f]' : 'text-[#5c4636] hover:text-[#2b1d14]'
+                onDark
+                  ? 'text-[#fbf5ea]/85 hover:text-[#fbf5ea]'
+                  : active === id
+                    ? 'bg-[#c0532d]/10 text-[#9c3f1f]'
+                    : 'text-[#5c4636] hover:text-[#2b1d14]'
               }`}
             >
               {t.nav[id]}
             </a>
           ))}
           <span className="mx-2">
-            <LanguageToggle />
+            <LanguageToggle onDark={onDark} />
           </span>
           <a
             href="#partenaire"
@@ -101,14 +115,14 @@ export default function NavBar() {
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <LanguageToggle />
+          <LanguageToggle onDark={onDark} />
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
             aria-controls="cv-mobile-nav"
             aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
-            className="grid h-11 w-11 place-items-center rounded-full text-[#2b1d14]"
+            className={`grid h-11 w-11 place-items-center rounded-full ${onDark ? 'text-[#fbf5ea]' : 'text-[#2b1d14]'}`}
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
